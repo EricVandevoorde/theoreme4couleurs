@@ -1,0 +1,37 @@
+\begin{tikzpicture}
+\def \n {5}
+\def \a {90}
+\def \x {360/\n * (\s - 1)+\a}
+\def \radius {2cm}
+\def \m {7}
+\def \y {360/\m*(\t-1)+\c}
+\def \radium {.6cm}
+\node[draw, circle,fill=b] (0) at (0,0) {0};
+\def \s {1} \node[draw, circle,fill=r]	(\s)  at ({\x}:\radius) {$\s$}; \path (\s) edge (0);\def \c {-90}
+%	\def \t {3} \coordinate[shift=({\x}:\radius)] (c\t) at ({\y}:\radium); \path (\s) edge (c\t);
+	\def \t {4} \coordinate[shift=({\x}:\radius)] (c\t) at ({\y}:\radium); \path (\s) edge (c\t);
+	\def \t {5} \coordinate[shift=({\x}:\radius)] (c\t) at ({\y}:\radium); \path (\s) edge (c\t);
+%	\def \t {6} \coordinate[shift=({\x}:\radius)] (c\t) at ({\y}:\radium); \path (\s) edge (c\t);
+\def \s {2} \node[draw, circle,fill=j]	(\s)  at ({\x}:\radius) {$\s$}; \path (\s) edge (0); \def \c {-18} 	\path (\s) edge (1);
+	\def \t {3} \coordinate[shift=({\x}:\radius)] (c\t) at ({\y}:\radium); \path (\s) edge (c\t);
+	\def \t {4} \coordinate[shift=({\x}:\radius)] (c\t) at ({\y}:\radium); \path (\s) edge (c\t);
+	\def \t {5} \coordinate[shift=({\x}:\radius)] (c\t) at ({\y}:\radium); \path (\s) edge (c\t);
+	\def \t {6} \coordinate[shift=({\x}:\radius)] (c\t) at ({\y}:\radium); \path (\s) edge (c\t);
+\def \s {3} \node[draw, circle,fill=v]	(\s)  at ({\x}:\radius) {$\s$}; \path (\s) edge (0); \def \c {54}	\path (\s) edge (2);
+%	\def \t {3} \coordinate[shift=({\x}:\radius)] (c\t) at ({\y}:\radium); \path (\s) edge (c\t);
+	\def \t {4} \coordinate[shift=({\x}:\radius)] (c\t) at ({\y}:\radium); \path (\s) edge (c\t);
+	\def \t {5} \coordinate[shift=({\x}:\radius)] (c\t) at ({\y}:\radium); \path (\s) edge (c\t);
+	\def \t {6} \coordinate[shift=({\x}:\radius)] (c\t) at ({\y}:\radium); \path (\s) edge (c\t);
+\def \s {4} \node[draw, circle,fill=j]	(\s)  at ({\x}:\radius) {$\s$}; \path (\s) edge (0); \def \c {126}	\path (\s) edge (3);
+	\def \t {3} \coordinate[shift=({\x}:\radius)] (c\t) at ({\y}:\radium); \path (\s) edge (c\t);
+	\def \t {4} \coordinate[shift=({\x}:\radius)] (c\t) at ({\y}:\radium); \path (\s) edge (c\t);
+	\def \t {5} \coordinate[shift=({\x}:\radius)] (c\t) at ({\y}:\radium); \path (\s) edge (c\t);
+%	\def \t {6} \coordinate[shift=({\x}:\radius)] (c\t) at ({\y}:\radium); \path (\s) edge (c\t);
+\def \s {5} \node[draw, circle,fill=v]	(\s)  at ({\x}:\radius) {$\s$}; \path (\s) edge (0); \def \c {198}	\path (\s) edge (4); \path (\s) edge (1);
+	\def \t {3} \coordinate[shift=({\x}:\radius)] (c\t) at ({\y}:\radium); \path (\s) edge (c\t);
+	\def \t {4} \coordinate[shift=({\x}:\radius)] (c\t) at ({\y}:\radium); \path (\s) edge (c\t);
+	\def \t {5} \coordinate[shift=({\x}:\radius)] (c\t) at ({\y}:\radium); \path (\s) edge (c\t);
+	\def \t {6} \coordinate[shift=({\x}:\radius)] (c\t) at ({\y}:\radium); \path (\s) edge (c\t);
+\path (3) edge[looseness=1.8,bend left=90] (1);
+\path (4) edge[looseness=1.8,bend right=90] (1);
+\end{tikzpicture}

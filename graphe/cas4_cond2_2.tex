@@ -1,0 +1,27 @@
+\begin{tikzpicture}
+	%line width=5pt pour les ligne droite
+	\def \n {5}
+	\def \a {90}
+	\def \x {360/\n * (\s - 1)+\a}
+	\def \radius {1.5cm}
+	\def \radium {2.2cm}
+	\node[draw,circle,fill=w] (0) at (0,0) {0};
+	% les 5 noeud interieur
+	\def \s {1} \node[draw,circle,fill=r]	(\s)  at ({\x}:\radius)	{\s};	\path (\s) edge (0);
+	\def \s {2} \node[draw,circle,fill=b]	(\s)  at ({\x}:\radius)	{\s};	\path (\s) edge (0);	\path (\s) edge (1);
+	\def \s {3} \node[draw,circle,fill=v]	(\s)  at ({\x}:\radius)	{\s};	\path (\s) edge (0);	\path (\s) edge (2);
+	\def \s {4} \node[draw,circle,fill=j]	(\s)  at ({\x}:\radius)	{\s};	\path (\s) edge (0);	\path (\s) edge (3);
+	\def \s {5} \node[draw,circle,fill=b]	(\s)  at ({\x}:\radius)	{\s};	\path (\s) edge (0);	\path (\s) edge (4);
+	\path (\s) edge (1);
+	%
+	%\path (3) edge[looseness=1.8,bend left=90,bicolor={v}{r},line width=4pt] (1);
+	\path (1) edge[looseness=3,bend left=-100,bicolor={v}{r},line width=4pt] (3);
+	\path (1) edge[looseness=4,bend right=120,bicolor={j}{r},line width=4pt] (4);
+	%
+	\draw[bicolor={j}{b},line width=2pt] (2) -- (-2.9,0.7);
+	\path (5) edge[looseness=2,bend left=-60,bicolor={v}{b},line width=3pt] (-1.5,2);
+	\node[draw,circle,fill=j]	()  at (-2.8,0.7)	{};
+	\node[draw,circle,fill=v]	()  at (-1.4,2)	{};
+	\node[draw,circle,fill=r]	()  at (-3.0,-0.1)	{};
+	
+\end{tikzpicture}

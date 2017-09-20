@@ -1,0 +1,45 @@
+\begin{tikzpicture}
+	%line width=5pt pour les ligne droite
+	\def \co {2.07cm}  
+	%coté si rayon=2.9
+	\def \cod {1.0cm}
+	
+	\node[draw,circle,fill=w] (0) at (0 , 0) {0};
+	\node[draw,circle,fill=r] (1) at ( \cod ,-\cod) {1};
+	\node[draw,circle,fill=b] (2) at ( \cod, \cod)	{2};
+	\node[draw,circle,fill=v] (3) at ( 0 , \co) 	{3};
+	\node[draw,circle,fill=j] (4) at (-\co ,0) 		{4};
+	\node[draw,circle,fill=b] (5) at (-\cod,-\cod) 	{5};
+
+	\node[draw,circle,fill=j] (6) at ( \co,0) 		{6};
+	\node[draw,circle,fill=r] (7) at ( -\co , \co) 	{7};
+	\node[draw,circle,fill=v] (8) at ( 0,-\co) 		{8};
+	
+	\path (0) edge (1);
+	\path (0) edge (2);
+	\path (0) edge (3);
+	\path (0) edge (4);
+	\path (0) edge (5);
+	\path (1) edge (2);
+	\path (1) edge (6);
+	\path (1) edge (5);
+	\path (1) edge (8);
+	\path (2) edge (3);	
+	\path (2) edge (6);
+	%\path (3) edge (4);
+	\path (3) edge (7);
+	\path (4) edge (5);
+	\path (4) edge (7);
+	\path (4) edge[looseness=2, bend left=-20] (8);
+	\path (5) edge (8);
+	\path (3) edge[looseness=2, bend left=20] (3);
+	%\path (6) edge (7);
+	\path (6) edge[looseness=2, bend left=20] (8);
+	%\path (6) edge (8);
+	\path (3) edge[looseness=2, bend left=20] (6);
+	%\path (7) edge (8);
+	\path (6) edge[looseness=2, bend left=-50] (7);
+	\path (7) edge[looseness=2, bend left=-50] (8);
+
+	%\node[draw] at (\radium,\radium) {permutation 1-3};
+\end{tikzpicture}	

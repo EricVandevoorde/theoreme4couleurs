@@ -1,0 +1,51 @@
+%\begin{tikzpicture}
+%	%line width=5pt pour les ligne droite
+%	\def \n {5}
+%	\def \a {90}
+%	\def \x {360/\n * (\s - 1)+\a}
+%	\def \radius {1.1cm}
+%	\def \radium {2.2cm}
+%	\node[draw,circle,fill=w] (0) at (0,0) {0};
+%	% les 5 noeud interieur
+%	\def \s {1} \node[draw,circle,fill=r]	(\s)  at ({\x}:\radius)	{\s};	\path (\s) edge (0);
+%	\def \s {2} \node[draw,circle,fill=j]	(\s)  at ({\x}:\radius)	{\s};	\path (\s) edge (0);	\path (\s) edge (1);
+%	\def \s {3} \node[draw,circle,fill=b]	(\s)  at ({\x}:\radius)	{\s};	\path (\s) edge (0);	\path (\s) edge (2);
+%	\def \s {4} \node[draw,circle,fill=j]	(\s)  at ({\x}:\radius)	{\s};	\path (\s) edge (0);	\path (\s) edge (3);
+%	\def \s {5} \node[draw,circle,fill=v]	(\s)  at ({\x}:\radius)	{\s};	\path (\s) edge (0);	\path (\s) edge (4);	\path (\s) edge (1);
+%	% les 3 arc exterieur
+%	\draw (0,0) ++(168:\radium) arc (168:18:\radium);
+%	\draw (0,0) ++(18:\radium) arc (18:-90:\radium);
+%	%arc en 2 morceau...
+%	\draw (0,0) ++(-90:\radium) arc (-90:-180:\radium);
+%	\draw (0,0) ++(180:\radium) arc (180:168:\radium);
+%	% les 3 noeds exterieur	
+%	\node[draw,circle,fill=v]	(6)   at (162:\radium)  {6};		
+%	\node[draw,circle,fill=r]	(7)   at (270:\radium) 	{7};		
+%	\node[draw,circle,fill=b]	(8)   at (18:\radium) 	{8};		
+%	\path (1) edge (6);				
+%	\path (2) edge (6);		\path (3) edge (6);
+%	\path (3) edge (7);			
+%	\path (4) edge (7); 			
+%	\path (1) edge (8);			
+%	\path (4) edge (8);		
+%	\path (5) edge (8);		
+%	%\node[draw] at (\radium,\radium) {permutation 1-3};
+%\end{tikzpicture}
+\begin{tikzpicture}[scale=.75]
+\def \n {5}
+\def \a {90}
+\def \x {360/\n * (\s - 1)+\a}
+\def \radius {2cm}
+\def \radium {3.618cm}
+\node[draw,circle,fill=w] (0) at (0,0) {0};
+\def \s {1} \node[draw,circle,fill=r]	(\s)  at ({\x}:\radius)	{\s};	\path (\s) edge (0);
+\def \s {2} \node[draw,circle,fill=j]	(\s)  at ({\x}:\radius)	{\s};	\path (\s) edge (0);	\path (\s) edge (1);
+\def \s {3} \node[draw,circle,fill=b]	(\s)  at ({\x}:\radius)	{\s};	\path (\s) edge (0);	\path (\s) edge (2);
+\def \s {4} \node[draw,circle,fill=j]		(\s)  at ({\x}:\radius)	{\s};	\path (\s) edge (0);	\path (\s) edge (3);
+\def \s {5} \node[draw,circle,fill=v]	(\s) 	at ({\x}:\radius)	{\s};	\path (\s) edge (0);	\path (\s) edge (4);	\path (\s) edge (1);
+\def \t {1} \node[draw,circle,fill=v]		(6) 	at (162:\radium) {7};		\path (1) edge (6);		\path (2) edge (6);		\path (3) edge (6);
+\def \t {2} \node[draw,circle,fill=r]		(7) 	at (270:3.236) 	{6};		\path (3) edge (7);		\path (4) edge (7);
+			\path (6) edge[bend right] (7);
+\def \t {3} \node[draw,circle,fill=b]	(8) 	at (18:\radium) 	{8};		\path (1) edge (8);		\path (4) edge (8);			\path (5) edge (8);	
+			\path (6) edge[looseness=1.1, bend left=50] (8);					\path (7) edge[bend right] (8);
+\end{tikzpicture}

@@ -1,0 +1,32 @@
+\begin{tikzpicture}
+\def \n {4}
+\def \a {90}
+\def \x {360/\n * (\s - 1)+\a}
+\def \radius {2cm}
+\def \m {7}
+\def \y {360/\m*(\t-1)+\c}
+\def \radium {.6cm}
+\node[draw, circle,fill=w] (0) at (0,0) {0};
+\draw[dashed] (0,2) arc (70:290:2.125cm);
+\def \s {1} \node[draw, circle,fill=v]	(\s)  at ({\x}:\radius) {$\s$}; \path (\s) edge (0); \def \c {-90}
+	\def \t {3} \coordinate[shift=({\x}:\radius)] (c\t) at ({\y}:\radium); \path (\s) edge (c\t);
+	\def \t {4} \coordinate[shift=({\x}:\radius)] (c\t) at ({\y}:\radium); \path (\s) edge (c\t);
+	\def \t {5} \coordinate[shift=({\x}:\radius)] (c\t) at ({\y}:\radium); \path (\s) edge (c\t);
+%	\def \t {6} \coordinate[shift=({\x}:\radius)] (c\t) at ({\y}:\radium); \path (\s) edge (c\t);
+\def \s {2} \node[draw, circle,fill=r]	(\s)  at ({\x}:\radius) {$\s$}; \path (\s) edge (0); \path (\s) edge (1); \def \c {0}
+	\def \t {3} \coordinate[shift=({\x}:\radius)] (c\t) at ({\y}:\radium); \path (\s) edge (c\t);
+	\def \t {4} \coordinate[shift=({\x}:\radius)] (c\t) at ({\y}:\radium); \path (\s) edge (c\t);
+	\def \t {5} \coordinate[shift=({\x}:\radius)] (c\t) at ({\y}:\radium); \path (\s) edge (c\t);
+	\def \t {6} \coordinate[shift=({\x}:\radius)] (c\t) at ({\y}:\radium); \path (\s) edge (c\t);
+\def \s {3} \node[draw, circle,fill=j]	(\s)  at ({\x}:\radius) {$\s$}; \path (\s) edge (0); \path (\s) edge (2); \def \c {90}
+%	\def \t {3} \coordinate[shift=({\x}:\radius)] (c\t) at ({\y}:\radium); \path (\s) edge (c\t);
+	\def \t {4} \coordinate[shift=({\x}:\radius)] (c\t) at ({\y}:\radium); \path (\s) edge (c\t);
+	\def \t {5} \coordinate[shift=({\x}:\radius)] (c\t) at ({\y}:\radium); \path (\s) edge (c\t);
+	\def \t {6} \coordinate[shift=({\x}:\radius)] (c\t) at ({\y}:\radium); \path (\s) edge (c\t);
+\def \s {4} \node[draw, circle,fill=b]	(\s)  at ({\x}:\radius) {$\s$}; \path (\s) edge (0); \path (\s) edge (3); \path (\s) edge (1); \def \c {180}
+	\def \t {3} \coordinate[shift=({\x}:\radius)] (c\t) at ({\y}:\radium); \path (\s) edge (c\t);
+	\def \t {4} \coordinate[shift=({\x}:\radius)] (c\t) at ({\y}:\radium); \path (\s) edge (c\t);
+	\def \t {5} \coordinate[shift=({\x}:\radius)] (c\t) at ({\y}:\radium); \path (\s) edge (c\t);
+	\def \t {6} \coordinate[shift=({\x}:\radius)] (c\t) at ({\y}:\radium); \path (\s) edge (c\t);
+%\node (-1) at (3,0) {};
+\end{tikzpicture}

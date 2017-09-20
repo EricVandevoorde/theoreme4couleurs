@@ -1,0 +1,26 @@
+\begin{tikzpicture}[scale=2.0]
+\node[draw, circle,minimum size=.7cm,fill=j] (DE) at (3.042,2.736) {\scriptsize{DE}};
+\node[draw, circle,minimum size=.7cm,fill=j] (AD) at (1.884,1.301) {\scriptsize{AD}};
+\node[draw, circle,minimum size=.7cm,fill=b] (AT) at (3.568,2.019) {\scriptsize{AT}};
+\node[draw, circle,minimum size=.7cm,fill=r] (BE) at (2.108,2.847) {\scriptsize{BE}};
+\node[draw, circle,minimum size=.7cm,fill=v] (ES) at (1.296,1) {\scriptsize{ES}};
+\node[draw, circle,minimum size=.7cm,fill=b] (FR) at (2.025,1.884) {\scriptsize{FR}};
+\node[draw, circle,minimum size=.7cm,fill=v] (IT) at (3.042,1.111) {\scriptsize{IT}};
+\node[draw, circle,minimum size=.7cm,fill=j] (LI) at (3.078,2.188) {\scriptsize{LI}};
+\node[draw, circle,minimum size=.7cm,fill=v] (LU) at (2.409,2.507) {\scriptsize{LU}};
+\node[draw, circle,minimum size=.7cm,fill=j] (MC) at (2.353,1.301) {\scriptsize{MC}};
+\node[draw, circle,minimum size=.7cm,fill=v] (NL) at (2.460,3.185) {\scriptsize{NL}};
+\node[draw, circle,minimum size=.7cm,fill=r] (PT) at (0.796,1) {\scriptsize{PT}};
+\node[draw, circle,minimum size=.7cm,fill=j] (SM) at (3.568,1.371) {\scriptsize{SM}};
+\node[draw, circle,minimum size=.7cm,fill=r] (CH) at (2.670,1.884) {\scriptsize{CH}};
+\node[draw, circle,minimum size=.7cm,fill=r] (VA) at (2.536,0.851) {\scriptsize{VA}};
+\path (DE) edge (NL);\path (DE) edge (BE);\path (DE) edge (LU);\path (DE) edge (CH);\path (DE) edge (AT);\path (DE) edge (FR);
+\path (AD) edge (FR);\path (AD) edge (ES);
+\path (AT) edge (CH);\path (AT) edge (LI);\path (AT) edge (IT);
+\path (BE) edge (NL);\path (BE) edge (LU);\path (BE) edge (FR);
+\path (ES) edge (PT);\path (ES) edge (FR);
+\path (FR) edge (IT);\path (FR) edge (CH);\path (FR) edge (LU);\path (FR) edge (MC);
+\path (IT) edge (SM);\path (IT) edge (CH);\path (IT) edge (VA);
+\path (LI) edge (CH);
+%  \path (2) edge[looseness=1.8,bend left=90] (5);
+\end{tikzpicture}
