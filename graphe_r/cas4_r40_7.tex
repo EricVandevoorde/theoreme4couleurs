@@ -1,0 +1,59 @@
+\begin{tikzpicture}
+	\def \n {5}
+	\def \a {90}
+	\def \x {360/\n * (\s - 1)+\a}
+	\def \radius {1.1cm}
+	\def \radium {2.6cm}
+	\def \axesize {3.0cm}
+	\draw[{\axeline}] (0,{0-\axesize}) -- (0,{\axesize});
+	\node[draw,circle,fill=w] (0) at (0,0) {0};
+	% les 5 noeud interieur
+	\def \s {1} \node[draw,circle,fill=b]	(\s)  at ({\x}:\radius)	{\s};
+	\path (\s) edge (0);
+	\def \s {2} \node[draw,circle,fill=r]	(\s)  at ({\x}:\radius)	{\s};
+	\path (\s) edge (0);	\path (\s) edge (1);
+	\def \s {3} \node[draw,circle,fill=v]	(\s)  at ({\x}:\radius)	{\s};
+	\path (\s) edge (0);	\path (\s) edge (2);
+	\def \s {4} \node[draw,circle,fill=j]	(\s)  at ({\x}:\radius)	{\s};
+	\path (\s) edge (0);	\path (\s) edge (3);
+	\def \s {5} \node[draw,circle,fill=r]	(\s)  at ({\x}:\radius)	{\s};
+	\path (\s) edge (0);	\path (\s) edge (4);	
+	\path (\s) edge (1);
+	% les 3 arc exterieur
+	\draw (0,0) ++(168:\radium) arc (168:18:\radium);
+	\draw (0,0) ++(18:\radium) arc (18:-90:\radium);
+	%arc en 2 morceau...
+	\draw (0,0) ++(-90:\radium) arc (-90:-180:\radium);
+	\draw (0,0) ++(180:\radium) arc (180:168:\radium);
+	% les 3 noeds exterieur	
+	\node[draw,circle,fill=j]	(6)   at (160:\radium) 	{6};		
+	\node[draw,circle,fill=b]	(7)   at (-90:\radium)   {7};		
+	\node[draw,circle,fill=v]	(8)   at (20:\radium) 	{8};		
+	\path (1) edge (6);				
+	\path (1) edge (8);
+	\path (2) edge (6);			
+	%\path (3) edge (6);
+	\path (3) edge (6);	
+	\path (3) edge[bicolor={v}{b},line width=4pt] (7); 			
+	\path (4) edge (7);	
+	%\path (4) edge (8);
+	\path (4) edge[looseness=1.5,bend right=40] (8);	
+	\path (5) edge (8);		
+    %complement
+	% 4-8
+	\node[draw,circle,fill=r,scale=0.6]  (9)   at (1.45,-0.8)	{9};	
+ 	\node[draw,circle,fill=j,scale=0.5]	(10)   at (2.3,-0.2) 	{10};	
+ 	\node[draw,circle,fill=b,scale=0.5]	(11)   at (1.7,-0.1) 	{11};
+	\node[draw,circle,fill=b,scale=0.6]	(12)   at (-0.4,-1.5) 	{12};
+ 	\node[draw,circle,fill=r,scale=0.6,line width=2pt]	(13)   at (-0.2,-2.05) 	{13};
+
+
+	\path (7) edge (9);	
+	\path (9) edge (11);
+	\path (5) edge (11);
+	\path (4) edge (13);
+
+
+	
+	
+	\end{tikzpicture}	
