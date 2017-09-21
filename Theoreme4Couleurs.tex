@@ -1,232 +1,3 @@
-\documentclass[french]{report}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
-\usepackage[a4paper]{geometry}
-\usepackage[francais]{babel}
-\usepackage{amsmath}
-\usepackage{gensymb}
-\usepackage{amsfonts}
-\usepackage{amssymb}
-\usepackage{sidecap}
-\usepackage{xfrac}
-\usepackage{caption}
-\usepackage{hyperref}
-\usepackage{afterpage}
-\usepackage{soul}
-\usepackage[bottom]{footmisc}
-\usepackage{tikz}
-\usepackage{boxedminipage}
-\usepackage{chngcntr}
-\usepackage{comment}
-\usepackage{placeins} %\FloatBarrier
-\counterwithout{equation}{chapter}
-\counterwithout{figure}{chapter}
-\usepackage{titlesec}
-\usepackage{changepage}% http://ctan.org/pkg/changepage
- \usepackage{enumitem}
-
-\usetikzlibrary{decorations}
-\usepackage{subcaption}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\tikzset{
-bicolor/.style 2 args={
-  thick,dashed,dash pattern=on 6pt off 6pt,-,#1,
-  postaction={draw,dashed,dash pattern=on 4pt off 8pt,-,#2,dash phase=5pt}
-  },
-}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\titlespacing{\chapter} {0pt} {*0} {*0} {} 
-%\titlespacing{\section} {0ex} {*0} {*0} {} 
-%\titlespacing{\subsection} {0ex} {*0} {*0} {} 
-%\titlespacing{\subsubsection} {10ex} {8ex} {*0} {} 
-
-\begin{document}
-
-	\def \axeline {dotted}
-	\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
-	%\newcommand*{\Line}[3][]{\tikz \draw[#1] #2 -- #3;}
-	\let\endchangemargin=\endlist 
-
-\definecolor{b}{RGB}{100,150,200}
-\definecolor{v}{RGB}{120,200,80}
-\definecolor{r}{RGB}{220,80,70}
-\definecolor{j}{RGB}{255,220,50}
-\definecolor{f}{RGB}{180,80,180}
-\definecolor{w}{RGB}{255,255,255}
-\definecolor{n}{RGB}{0,0,0}
-
-\input{./title.tex}
-
-\newpage
-\pagenumbering{gobble}
-
-\tableofcontents
-
-\chapter{Introduction}
-
-\pagenumbering{arabic}
-\setcounter{page}{2}
-%\noindent
-%\parindent=0cm
-
-%${\mathcal{C}}_{53}$\\
-%$\overline{\mathcal{C}}_{53}$\\
-%${\mathcal{PC}}_{53}$\\
-
-Le but de ce document est de démontrer que quatre couleurs suffisent pour colorier n'importe quelle carte géographique et dès lors que tout graphe simple, planaire et connexe est de nombre chromatique quatre (voir la section suivante pour la définition de ces critères). Ce résultat est connu sous le nom du \textit{théorème des quatre couleurs}.\bigskip
-
-Le problème remonte à 1852, lorsque le cartographe anglais Francis \textsc{Guthrie} remarqua qu'il lui suffisait de quatre couleurs pour colorer la carte (pourtant complexe) des comtés d'Angleterre, sans que deux cantons voisins ne reçoivent la même couleur. Son frère Frederick, mathématicien, ne parvenant pas à savoir si la propriété était générale, transmit la réflexion à son professeur, Auguste \textsc{de Morgan} de la \textit{University College} de Londres. Et de fil en aiguille, le problème (devenu postulat, puis conjecture), se répandit dans la sphère mathématique, aidé en 1978 par la publication de la question par Arthur \textsc{Cayley} et son évocation lors d'un colloque de la \textit{London Mathematical Society}. Prèsqu'aussitôt, Alfred \textsc{Kempe} propose une preuve de la conjecture en 1879 et, pendant une décennie, on crut le problème des quatre couleurs résolu. \textsc{Kempe} fut élu membre de la \textit{Royal Society} et devint ensuite président de la \textit{London Mathematical Society}. Mais onze ans plus tard, en 1890, Percy John \textsc{Heawood} trouva une faille majeure dans la démonstration. Il parvient cependant à sauvegarder tant bien que mal la preuve en un \textit{théorème des cinq couleurs}. Une seconde preuve, proposée par Peter Guthrie \textsc{Tait} dès 1880, fut également réfutée, par Julius \textsc{Peterson} en 1891.\smallskip
-
-De nombreuses tentatives ont étés introduites pour réduire à quatre le nombre de couleurs à partir de la démonstration de \textsc{Kempe-Heawood}. En 1913, le père de l'algèbre moderne George David \textsc{Birkhoff}, formule une notion de configuration réductible et démontre la conjecture pour toutes les cartes comportant moins de vingt-six régions à colorier et cette borne est petit à petit améliorée au cours du siècle. En 1969, Heinrich \textsc{Heesch} trouve des conditions \textit{presque} nécessaires et suffisantes pour qu'une configuration soit réductible et une méthode générale pour trouver un ensemble de configurations inévitable. Ce n'est finalement qu'en 1976 que la première démonstration complète fut acceptée, celle de Kenneth \textsc{Appel} et Wolfgang \textsc{Haken}. Ces derniers réalisèrent de manière informatique le programme de \textsc{Heesch} et montrèrent, après 1200 heures de calcul et des dizaines de milliers de figures à l'appui, que les 1478 configurations sont réductibles et 4-coloriables. Cette preuve fut la première démonstration acceptée sur base de l'utilisation massive de l'ordinateur. Enfin, en 1995, Neil \textsc{Robertson}, Daniel \textsc{Sanders}, Paul \textsc{Seymour} et Robin \textsc{Thomas} mirent à profit l'avancement de la technologie pour compiler une réalisation nettement plus simple du programme de \textsc{Heesch}, avec seulement 633 configurations.
-
-Dans ce document, nous déclarons exposer une preuve complète du théorème qui ne nécessite pas l'utilisation d'outil informatique.
-
-Notre document est découpé en 3 chapitres.\\
-Dans le 1er chapitre, nous donnons les définitions permettant de cadrer notre propos et tout particulièrement la définition du graphe géographique et de la chaine de Kempe.
-Dans le 2ème chapitre nous reprenons la démonstration du théorème des cinq couleurs. Ce n'est pas directement notre sujet, mais nous nous basons sur les mêmes principes, il était donc normal de les rappeler. Enfin, le 3ème chapitre s’attaque au théorème des quatre couleurs et à sa résolution.
-
-\section{Carte et coloration}
-
-Pour colorer une carte géographique, on demande que toute paire de pays limitrophes soit coloriée de deux couleurs différentes afin de visualiser clairement la frontière qui sépare les deux pays. Dans le cadre de la démonstration du théorème, nous ne considérerons que des pays connexes, c'est-à-dire constitués d'un seul morceau\footnote{La Corse, l'Alaska ou Baerle-Duc sont dès lors considérés comme des pays indépendants.}. De plus, nous restreindrons la définition de frontière entre deux pays à des courbes de longueur non nulle : deux pays ne se touchant que par un point ne sont pas considérés comme limitrophes. Enfin, nous considérerons que la carte étudiée est constituée d'un nombre fini de pays, regroupés en un ensemble connexe unique (\textit{i.e.}~ nous ne regardons qu'un seul continent).
-
-À toute carte géographique satisfaisant ces hypothèses, on peut associer un \textit{graphe} coloré\footnote{Une coloration d'un graphe $G$ est une fonction associant à tout sommet de $G$ une couleur, généralement un élément de l'ensemble d'indices $\{1, 2, ..., n\}$, telle que deux sommets adjacents n'ont pas la même couleur (où $n$ est le nombre de sommets du graphe). De manière équivalente, en définissant un \textit{stable} de \textit{G} par un sous-ensemble de sommets deux-à-deux non adjacents, une coloration de $G$ est une partition de son ensemble de sommets en stables. On ne différentie généralement pas les colorations qui ne sont distinctes qu'à une permutation des indices de couleurs près.}, c'est-à-dire une représentation schématique des liens entre les pays (voir Figure~\ref{Carte}). Chaque pays est représenté par un \textit{sommet} coloré, relié par des \textit{arrêtes} à ses pays limitrophes. Le nombre de pays limitrophes à un sommet (\textit{i.e.}~le nombre d'arêtes partant de ce sommet) est appelé son \textit{degré}, que l'on note~$d\in\mathbb{N}^+$. Les polygones délimités par les arrêtes entre les sommets sont appelés les \textit{faces} du graphe\footnote{Les équivalents de ces faces dans la carte géographique d'origine pourraient être appelés des \textit{embranchement de frontières}, c'est à dire des points d'où partent au moins trois frontières ou, dit autrement, où au moins trois pays se rencontrent. Ce n'est cependant pas toujours vrai : sur le graphe de la Figure~\ref{Carte} le Liechtenstein et l'Allemagne bordent la même face alors qu'ils ne partagent pas de frontière.}. Précisons tout de suite que l'espace externe délimité par le graphe est toujours considéré comme étant une face\footnote{Un graphe ne comportant qu'un seul sommet et aucune arête possède donc une face.}.
-
-\begin{figure}[b!]\centering{
-\includegraphics[width=.45\textwidth]{Carte}\qquad
-\input{./graphe/graphe_europe}
-\caption{Exemple de carte géographique et du graphe associé}\label{Carte}}
-\end{figure}
-
-Puisque les graphes que nous considérerons proviennent tous de cartes géographiques, ils satisfont aux propriétés suivantes :
-%\begin{enumerate}
-\begin{description}
-
-\item[\textbf{Simple ·}] Un pays n'ayant pas de frontière avec lui-même, le graphe ne présente pas de boucle (c'est-à-dire d'arête retournant sur le sommet dont elle est issue). De même, une et une seule frontière peut exister entre deux pays (connexes) et il ne peut dès lors y avoir d'arêtes multiples entre deux sommets. On dit d'un graphe sans boucle ni lien multiple qu'il est \textit{simple} ;
-\item[\textbf{Planaire ·}] Une frontière ne pouvant se restreindre à un seul point, les arêtes du graphe ne peuvent pas se croiser. De plus, quelque soit la projection utilisée, une carte peut toujours être représentée sur un plan, sans devoir introduire de troisième dimension. Dès lors le graphe associé est également restreint à un plan et un sommet ne peut être relié par un autre en passant \textit{au dessus} d'arêtes ou de sommets. Ainsi, le seul endroit où deux arêtes peuvent se rencontrer est en un sommet. On dit d'un graphe pouvant être représenté sur un plan de façon à ce qu'aucune arête ne se croise qu'il est \textit{planaire} ;
-\item[\textbf{Connexe ·}] Tous les pays étant regroupés en un bloc unique (\textit{i.e.}~un continent), tous les sommets sont reliés les uns aux autres par des arêtes et on peut toujours trouver une succession d'arêtes (ce qu'on appelle un \textit{chemin}%\footnote{Lorsqu'on parlera de longueur de chemin et de chemin fermé, on sous-entendra par \textit{succession d'arêtes} qu'on ne passe jamais plus d'une fois par la même arête, quelque soit le sens de parcours.}
-) qui relie n'importe quelle paire de sommets. On dit alors que le graphe est \textit{connexe}.
-%\end{enumerate}
-\end{description}
-Tous les graphes que nous considèrerons par la suite seront simples, planaires et connexes. Pour éviter la lourdeur de répétitions continues, nous sous-entendrons ces hypothèses par la dénomination de \textit{graphe géographique}.
-
-\section{Chaine de Kempe}
-
-Dans ce qui suit, nous utiliserons abondamment la notion de \textit{chaine de \textsc{Kempe}}, à laquelle nous ferons référence en parlant simplement de \textit{chaine}. Une chaine de \textsc{Kempe} est un sous-ensemble bicolore connexe d'une carte coloriée. En terme de graphes, une chaine de \textsc{Kempe} est un sous-graphe connexe maximum dichromatique. Remarquons que ces «~chaines~» ne sont pas nécessairement linéaires et peuvent être des arbres ou comprendre des chemins fermés. Dans une chaine (par définition bicolore), on peut toujours échanger les deux couleurs sans que cela ne pose de problème dans le coloriage général de la carte (ou du graphe associé). On notera $\mathcal{C}_{ab}$ la chaine comportant le sommet $a$ et dont la seconde couleur est celle du sommet $b$, celui-ci ne faisant pas nécessairement partie de la chaine (on peut donc avoir $\mathcal{C}_{ab}\cap\mathcal{C}_{ba}=\varnothing$).
-
-Par exemple, sur la Figure~\ref{Carte}, le Benelux forme une chaine verte-rouge que l'on peut noter de plusieurs façons : $\mathcal{C}_{\textsc{be}\cdot\textsc{nl}}=\mathcal{C}_{\textsc{lu}\cdot\textsc{pt}}=...$ . De même, Andorre, Monaco, la France, l'Allemagne, l'Autriche et le Liechtenstein forment une chaine jaune/bleue. Inverser les couleurs jaune et bleue au sein de cette chaine donne une coloration tout aussi valable de la carte et du graphe.
-
-Dans le cas où la chaine $\mathcal{C}_{ab}$ contient à la fois le sommet $a$ et le sommet $b$ (\textit{i.e.} lorsque~$\mathcal{C}_{ab}=\mathcal{C}_{ba}$), on dira que la chaine $a$-$b$ est complète, ce que l'on notera~$\overline{\mathcal{C}}_{ab}$.
-%On notera dans la suite du document $\overline{\mathcal{C}}_{xy}$ la chaine commune a «~x~» et «~y~», soit lorsque la $\mathcal{C}_{xy}$ = $\mathcal{C}_{yx}$. 
-
-
-\chapter{Théorème des cinq couleurs}
-
-Le nombre minimal de couleurs différentes nécessaires pour la coloration d'un graphe est appelé son \textit{nombre chromatique}. Il est relativement aisé de montrer que le nombre chromatique de tout graphe géographique est au plus cinq. Ce résultat est le \textit{théorème des cinq couleurs} : cinq couleurs suffisent toujours pour colorer n'importe quelle carte simple planaire connexe. Nous allons redonner ici une démonstration de ce théorème et nous nous baserons sur ce résultat dans la suite pour montrer que quatre couleurs sont en fait déjà suffisantes.
-
-\section{Formule d'Euler}
-
-Comme échauffement, nous allons commencer par redémontrer que tout graphe associé à une carte géographique satisfait à la \textit{formule de \textsc{Euler}} $$S+F-A=2$$ où $S$ représente le nombre total de sommets du graphe, $F$ le nombre total de faces de celui-ci et~$A$ son nombre total d'arêtes (où on a évidemment $S, F, A \in\mathbb{N}^+$).\smallskip
-
-\begin{figure}[b!]\centering{
-\begin{tikzpicture}
-\node[draw, circle,fill=j] (1) at (0,0) {1};
-\node (0) at (0,-0.65) { };
-\end{tikzpicture}
-\qquad\qquad
-\begin{tikzpicture}
-\node[draw, circle,fill=v] (1) at (-0.5,0) {1};
-\node[draw, circle,fill=b] (2) at (0.5,0) {2};
-\node (0) at (0,-0.65) { };
-\path (1) edge (2);
-\end{tikzpicture}
-\qquad\qquad
-\begin{tikzpicture}
-\node[draw, circle,fill=r] (2) at (-0.5,0) {2};
-\node[draw, circle,fill=v] (1) at (0.5,0.65) {1};
-\node[draw, circle,fill=j] (3) at (0.5,-0.65) {3};
-\path (1) edge (2); \path (2) edge (3);
-\end{tikzpicture}
-\qquad\qquad
-\begin{tikzpicture}
-\node[draw, circle,fill=b] (2) at (-0.5,0) {2};
-\node[draw, circle,fill=r] (1) at (0.5,0.65) {1};
-\node[draw, circle,fill=v] (3) at (0.5,-0.65) {3};
-\path (1) edge (2); \path (2) edge (3); \path (3) edge (1);
-\end{tikzpicture}
-\caption{Cas $S=\{1,2,3\}$.}\label{fig:Euler}}
-\end{figure}
-%\FloatBarrier
-
-La démonstration se fait très simplement par récurrence. Pour l'étape de base (\textit{initiation}), voir les graphes de la Figure~\ref{fig:Euler} ci-dessous, on comprend tout de suite que si un graphe (simple) ne possède qu'un seul et unique sommet~($S=1$), il ne peut posséder aucune arête~($A=0$), mais il est entouré par une face extérieure~($F=1$). On a dès lors $1+1-0=2$, qui satisfait bien la formule. Lorsqu'il y a deux sommets ($S=2$), puisque le graphe géographique doit être connexe il y a nécessairement une arête ($A=1$), mais toujours que la seule face extérieure ($F=1$). Alors $2+1-1=2$ est bien vérifié. De même, lorsqu'on a trois sommets, soit on n'a que deux arêtes et une face ($3+1-2=2$), soit on a trois arêtes et deux faces ($3+2-3=2$) : dans les deux cas la formule est respectée. On suppose ensuite (\textit{hérédité}) que tout graphe géographique de~$s$ sommets satisfait à la formule d'\textsc{Euler}, pour $s>3\in\mathbb{N}^+$.
-
-Soit un graphe de $s+1$ sommets. On note $S=s+1$, $F$ et $A$ ses nombres de sommets, faces et arêtes. Si l'on supprime arbitrairement un sommet de degré $d$ quelconque, on supprime par conséquence $d$ arêtes. Dès lors, les $d$ faces délimités par ces arêtes n'en forment plus qu'une : on supprime~$d-1$ faces. Pour ce nouveau graphe on a alors $S'=s=S-1$, $F'=F-(d-1)$ et~$A'=A-d$. On sait par l'hypothèse de récurrence que ce graphe réduit satisfait à la formule d'\textsc{Euler} : $S'+F'-A'=2$. En injectant les expressions de $S'$, $F'$ et $A'$ en fonction de $S$, $F$ et $A$ on trouve alors $$(S-1)+\big(F-(d-1)\big)-(A-d)=S+F-A=2$$ ce qui achève la démonstration.\bigskip
-
-Remarquons également que, puisque (à l'exception de la face extérieure) toute face est toujours bordée par au moins trois arêtes (puisqu'il n'y a ni boucle ni lien double) et que chaque arête délimite au plus deux faces, on a $$2A\geqslant 3F$$
-%
-% Commentaire Npoé
-%Je n'aime pas ce paragraphe
-%
-%\begin{center}\textcolor{red}{\textbf{Je n'aime pas ce paragraphe, la "démonstration" n'est pas assez intuitive …\\}}\end{center}
-En injectant la formule d'\textsc{Euler} récrite sous la forme $F=2+A-S$, ce résultat nous permet d'éliminer le nombre de faces : $2A\geqslant 3(2+A-S)$. En simplifiant, cela nous donne la majoration suivante $$A\leqslant 3S-6$$ toujours valide pour les graphes géographiques.\\
-
-\section{Existence d'un sommet de degré au plus cinq}\label{Existence}
-
-Nous montrons ensuite que tout graphe géographique possède au moins un sommet possédant moins de six voisins, c'est-à-dire dont le degré est au plus cinq. La démonstration se fait par l'absurde : nous supposons que tous les sommets du graphe sont au moins de degré égal à six et nous allons en déduire une contradiction avec nos hypothèses sur le graphe, en particulier que la formule d'\textsc{Euler} n'est plus obéie.
-
-%Notons $F_k\in\mathbb{N}^+$ ($k\in\mathbb{N}^+$) les nombres de $k$-faces (pour lesquels il ne faut pas oublié de prendre en compte la face extérieur), c'est-à-dire de faces bordées par un chemin fermé de $k$ arêtes (\textit{e.g.}~un triangle est une 3-face, un quadrilatère une 4-face, etc.). À l'exception de la face extérieure, toute face est toujours bordée par au mois trois arêtes (puisqu'il n'y a ni boucle ni arête double). Alors, soit les arêtes ne forment aucun chemin fermé (on dit que le graphe est un \textit{arbre}) et il n'y a que la face extérieure (\textit{i.e.}~$F=1$), soit $$F=\sum\limits_{k=3} F_k=F_3+F_4+F_5+...$$\\
-
-Pour se faire, introduisons la notation suivante :
-%On écrit $F_k\in\mathbb{N}^+$ ($k\in\mathbb{N}^+$) les nombres de $k$-faces (pour lesquels il ne faut pas oublié de prendre en compte la face extérieur), c'est-à-dire de faces bordées par un chemin fermé de $k$ arêtes (\textit{e.g.}~un triangle est une 3-face, un quadrilatère une 4-face, etc.). Puisqu'il n'y a ni boucle ni arête double, toute face est toujours bordée par au mois trois arêtes (à l'exception peut-être de la face extérieure dans le cas général où le degré des sommets peut être plus petit que cinq). Par l'hypothèse de notre démonstration, tout sommet est au moins de degré six et $F\geqslant 2$\footnote{Dans le cas général où le degré des sommets peut être plus petit que cinq, les arêtes peuvent ne former aucun chemin fermé (on dit que le graphe est un \textit{arbre}) et il n'y a que la face extérieure. Alors $F=1$. Lorsque le graphe n'est pas un arbre, on a toujours la formule $F=\sum F_k$ pour $k\geqslant 3$.}, alors $$F=\sum\limits_{k=3} F_k=F_3+F_4+F_5+...$$
-on écrit $S_d\in\mathbb{N}^+$ le sombre de sommets de degré $d$. Comme par hypothèse chaque sommet est au moins de degré six, on a $$S=\sum\limits_{d=6}S_d=S_6+S_7+S_8+...$$ À partir de chaque sommet de degré $d$, il part $d$ arrêtes. Alors $\frac{1}{2}\sum dS_d$ donne le nombre total d'arêtes (où on doit diviser par deux car chaque arrête contribue au degré de deux sommets\footnote{Ceci n'est vrai que par notre hypothèse sur le degré minimal. Dans le cas où il peut exister un sommet de degré un, l'arête issue de ce sommet ne délimite aucune face (\textit{c.f.} Monaco ou Saint-Marin dans le graphe de la Figure~\ref{Carte}, page~\pageref{Carte}).}), c'est-à-dire $$A=\dfrac{1}{2}\sum\limits_{d=6}dS_d=\dfrac{1}{2}\Big\lbrace 6S_6+7S_7+8S_8+...\Big\rbrace$$
-%De même, chaque $k$-face est délimitée par $k$ arêtes et, puisque chaque arête délimite deux faces, on a aussi $$A=\frac{1}{2}\sum\limits_{k=3}kF_k=\frac{1}{2}\Big\lbrace 3F_3+4F_4+5F_5+...\Big\rbrace$$
-%À partir de cette dernière expression et la définitions de $F$ en fonction des $F_k$, on obtient $$2A-3F=\sum\limits_{k=3}(k-3)F_k=F_4+2F_5+3F_6+...\geqslant 0$$ d'où on tire $$2A\geqslant 3F$$ En injectant la formule d'Euler récrite sous la forme $F=2+A-S$, cela nous permet d'éliminer le nombre de faces $2A\geqslant 3(2+A-S)$. En simplifiant, cela nous donne la majoration suivante\footnote{Cette expression est toujours vraie pour les graphes géographiques puisque nous n'avons pas utilisé d'hypothèse sur l'ordre des sommets pour la déduire.}
-%\begin{equation}
-%A\leqslant 2S-6
-%\end{equation}
-On peut alors écrire $$2A-6S=\sum\limits_{d=6}(d-6)S_d=S_7+2S_8+3S_9+...\geqslant 0$$ d'où l'on tire $$A\geqslant 3S$$ En se souvenant qu'on a toujours $2A\geqslant 3F$ et en additionnant cette inégalité à celle que l'on vient de déduire, on trouve $$A\geqslant S+F\quad\qquad\Rightarrow\quad\qquad S+F-A\leqslant 0$$ or la formule d'Euler nous dit qu'on a l'égalité stricte et positive $S+F-A=2$ pour les graphes considérés. On a donc une contradiction dans nos hypothèses : un graphe géographique ne peut pas être composé de sommets étant tous de degré strictement plus grand que cinq. On en conclut l'existence d'au moins un sommet de degré au plus cinq, ce qui achève la démonstration.\\
-
-\section{Théorème des cinq couleurs}
-
-Venons-en à la démonstration du théorème des cinq couleurs. Les deux résultats précédents, à savoir l'applicabilité de la formule d'\textsc{Euler} à tout graphe géographique et l'existence d'au moins un sommet de degré au plus cinq dans un tel graphe, nous permettent de faire la récurrence suivante sur le nombre de sommets.
-
-Si $S\leqslant 5$, il est évident que cinq couleurs suffisent pour colorer le graphe : on en utilise une par sommet. Si $S=6$, on pourrait imaginer que tout sommet du graphe soit lié à chacun des autres sommets par une arête, mais alors le graphe n'est pas planaire\footnote{Un graphe dont tout sommet est adjacent à tous les autres, c'est-à-dire tel que chaque paire de sommet est reliée par une arête, est appelé un graphe \textit{complet}. On peut montrer que le graphe complet composé de cinq sommets, dénoté $K_5$ est le plus petit graphe \textit{non planaire}. Tous les graphes complets composés de plus de cinq sommets sont également non planaires.}. Pour que le graphe soit planaire lorsque $S=6$, il doit exister au moins deux sommets qui ne soient pas liés par une arête et ce deux-là peuvent avoir la même couleur. Les quatre autres sommets ne demandent que quatre couleurs supplémentaires, soit au total cinq couleurs nécessaires pour colorer le graphe. Ceci constitue l'étape de base de la démonstration (\textit{initiation}). On suppose ensuite (\textit{hérédité}) que tout graphe géographique de~$s>6\in\mathbb{N}^+$ sommets est 5-coloriable (\textit{i.e.} que cinq couleurs suffisent pour le colorer).
-
-On se donne alors un graphe de $s+1$ sommets, dont on sélectionne de manière arbitraire un sommet de degré au plus cinq (dont on sait par la section précédente qu'il en existe au moins un). En supprimant ce sommet, le graphe est 5-coloriable par hypothèse de récurrence. Alors si ce sommet a moins de cinq voisins ou si (au moins) deux voisins de ce sommet ont la même couleur, il reste au moins une couleur disponible pour le colorer. En revanche, si ce sommet a exactement cinq voisins et qu'ils ont tous des couleurs différentes on distingue différents cas. Appelons «~0~» le sommet en question et numérotons (de manière arbitraire) de 1 à 5 les cinq sommets qui lui sont connectés (voir Figure~\ref{fig:5_pentagone_5col}).
-
-%\begin{SCfigure}[][h!]
-%	\input{./graphe/5_sommet_herison}
-%	\caption{Sommet 0 entouré de 5 sommets de 5 couleurs différentes.}
-%	\label{fig:herison}
-%\end{SCfigure}
-
-On supposera, de plus, que ces sommets forment un chemin fermé autour de 0, connectés par des arrêtes 1-2, 2-3, 3-4, 4-5 et 5-1 (voir Figure~\ref{fig:5_pentagone_5col}). Cette hypothèse, plus contraignante que celles habituellement supposées pour la démonstration du théorème des cinq couleurs, simplifiera nos réflexions dans la démonstration du théorème des quatre couleurs. Cette hypothèse est effectivement plus contraignante puisqu'elle empêche deux sommets qui, sans la présence de ces arêtes seraient adjacents mais non voisins, d'être coloriés de la même couleur. La suppression de ces arrêtes donne un graphe dont la coloration est toujours valide, alors que l'inverse n'est pas vrai : ajouter ces arrêtes à un graphe colorés ne préserve pas toujours la 5-coloration de celui-ci. Enfin, le sommet 0 étant par hypothèse de degré cinq, il ne peut exister d'autres arêtes qui lui sont connectées et la présence de ce chemin fermé ne réduit pas la généralité de la démonstration : l'hypothèse est alors acceptable.
-
-%Bien que cela ne soie pas repris dans l’explication de \textsc{Kempe}, il nous semble nécessaire de préciser que si on peut démontré que le graphe comportant ces arrêtes est 4-coloriable, alors tous les graphes dont on supprimerais une où plusieurs arrêtes sont également 4-coloriable. La suppression d’une arrête ne modifie pas les couleurs des sommets et ne risque pas de mettre en relation 2 sommets de même couleur. Ces arrete complementaire n'empeche pas non plus d'autre posibilité de liaiasons avec le sommet « 0 » puisque par definition il est de niveau 5 et a donc deja le nombre maximun d'arrêtes. \\
-%Soucieux de produire une solution généraliste applicable dans tous les cas, nous considérerons le graphes le plus contraignant, a savoir un graphe qui comporte ces arrêtes (voir Figure~\ref{fig:5_pentagone_5col}) \\
-
-\begin{SCfigure}[][t!]
-	\input{./graphe/5_pentagone_5col}
-	\caption{Sommet~0 de degré~5\\\footnotesize\textit{Les sommets 1 à 5 sont de couleurs différentes et forment un chemin fermé autour de 0.}\\\footnotesize{Remarque · \textit{Les arêtes incomplètes partant des sommets 1 à 5 illustrent le fait que le graphe peut contenir d'autres sommets et arêtes, non illustrés sur cette figure. Leur nombre est arbitraire.}}}
-	\label{fig:5_pentagone_5col}
-\end{SCfigure}
-
-Dans le premier cas, on regarde s'il existe une chaine de \textsc{Kempe} complète $\overline{\mathcal{C}}_{13}$ reliant les sommets~1 et~3 (ou de manière équivalente 2 et 4, 3 et 5, 4 et 1 ou 5 et 2), %c'est-à-dire telle que l'on ait l'égalité~$\mathcal{C}_{13}=\mathcal{C}_{31}$ (
-voir Figure~\ref{fig:5_pentagone_5col2}. %Cette chaine forme alors une succession de sommets de couleurs alternées formant un chemin bicolore entre les sommets 1 et 3.
-Si cette chaine complète n'existe pas, le sommet 3 ne fait pas partie de $\mathcal{C}_{13}$ : on a alors~$\mathcal{C}_{13}\cap\mathcal{C}_{31}=\varnothing$ et on peut permuter les couleurs dans la chaine $\mathcal{C}_{31}$ sans que cela ne modifie le sommet~1, c'est-à-dire de façon à ce qu'au final 1 et 3 soient de la même couleur et que la seconde couleur de la chaine soit disponible pour le sommet 0. Le graphe est alors 5-coloriable.
-
-Si une chaine complète $\overline{\mathcal{C}}_{13}$ existe, on doit passer au second cas. L'existence de cette chaine implique que le sommet 4 (resp. 5) ne peut pas faire partie de la chaine $\mathcal{C}_{24}$ (resp.~$\mathcal{C}_{25}$). En effet, si une chaine~$\mathcal{C}_{24}$ contenait 2 et 4, elle devrait avoir un sommet commun avec la chaine~$\mathcal{C}_{13}$ à l'endroit où les deux chaines se croisent. Or, puisque les cinq sommets autour de~0 sont de couleurs différentes, les chaines $\mathcal{C}_{13}$ et $\mathcal{C}_{24}$ n'ont pas de couleur commune et ne peuvent pas se croiser ! On est dès lors libre de permuter les couleurs dans $\mathcal{C}_{24}$ ou $\mathcal{C}_{42}$ de façon à ce que~2 et~4 soient de la même couleur et qu'une couleur soit libérée pour colorer le sommet~0. Le raisonnement est identique pour la chaine $\mathcal{C}_{25}$.
-
-Le cas du graphe à $s+1$ sommets étant traité, ceci achève la preuve du théorème des cinq couleurs.
-
-\begin{SCfigure}[][h!]
-	\input{./graphe/5_pentagone_5col2}
-	\caption{Existence d'une chaine~$\overline{\mathcal{C}}_{13}$\\\footnotesize\textit{Si~$\overline{\mathcal{C}}_{13}$ existe, on permute les couleurs dans $\mathcal{C}_{24}$ (ou $\mathcal{C}_{42}$). Si elle n'existe pas, on permute les couleurs dans $\mathcal{C}_{13}$ (ou $\mathcal{C}_{31}$).}\\\footnotesize{Remarque · \textit{Le test peut être fait sur n'importe laquelle des paires de sommets 1-3, 2-4, 4-1 ou 5-2. }}}
-	\label{fig:5_pentagone_5col2}
-\end{SCfigure}
-
 \chapter{Théorème des quatre couleurs}
 
 Nous avons à présent à notre disposition tous les outils nécessaires pour la démonstration complète du théorème des quatre couleurs. Assez ironiquement, la première tentative de démonstration par \textsc{Kempe} en 1879 contient toutes les idées maitresses de la preuve complète.\\
@@ -361,11 +132,11 @@ Nous sommes dans le cas où $\overline{\mathcal{C}}_{13}$ et $\overline{\mathcal
 \FloatBarrier
 
 \paragraph{2em condition}
-Il doit exister au moins un sommet commun à la $\overline{\mathcal{C}}_{14}$ et à la $\overline{\mathcal{C}}_{24}$. Et en symétrie au moins un sommet commun à la $\overline{\mathcal{C}}_{13}$ et a la $\overline{\mathcal{C}}_{53}$.\\
+Il doit exister au moins un sommet commun à la $\overline{\mathcal{C}}_{14}$ et à la $\mathcal{C}_{24}$. Et en symétrie au moins un sommet commun à la $\overline{\mathcal{C}}_{13}$ et a la $\mathcal{C}_{53}$.\\
 De manière plus synthétique on a :\\
-$\overline{\mathcal{C}}_{14}\cap\overline{\mathcal{C}}_{24}\not=\varnothing$\\
-$\overline{\mathcal{C}}_{12}\cap\overline{\mathcal{C}}_{53}\not=\varnothing$\\
-Lorsque les deux chaines $\overline{\mathcal{C}}_{13}$ et $\overline{\mathcal{C}}_{14}$ ne se croisent pas (figure~\ref{fig:cas4_cond2_1}), les sommets 2 et 5 sont respectivement enclavés par des chaines ne contenant pas les couleurs de $\overline{\mathcal{C}}_{24}$ et $\overline{\mathcal{C}}_{53}$. Sur la figure, le sommet 2 est enclavé par une chaine qui n’est ni bleue ni jaune et le sommet 5 par une chaine qui n’est ni bleue ni verte. L’inversion des couleurs dans $\overline{\mathcal{C}}_{24}$ et $\overline{\mathcal{C}}_{53}$ n’a alors d’influence que strictement à l’intérieur de ces enclaves et la méthode de \textsc{Kempe} fonctionne toujours.\\
+$\overline{\mathcal{C}}_{14}\cap\mathcal{C}_{24}\not=\varnothing$\\
+$\overline{\mathcal{C}}_{12}\cap\mathcal{C}_{53}\not=\varnothing$\\
+Lorsque les deux chaines $\overline{\mathcal{C}}_{13}$ et $\overline{\mathcal{C}}_{14}$ ne se croisent pas (figure~\ref{fig:cas4_cond2_1}), les sommets 2 et 5 sont respectivement enclavés par des chaines ne contenant pas les couleurs de $\mathcal{C}_{24}$ et $\mathcal{C}_{53}$. Sur la figure, le sommet 2 est enclavé par une chaine qui n’est ni bleue ni jaune et le sommet 5 par une chaine qui n’est ni bleue ni verte. L’inversion des couleurs dans $\mathcal{C}_{24}$ et $\mathcal{C}_{53}$ n’a alors d’influence que strictement à l’intérieur de ces enclaves et la méthode de \textsc{Kempe} fonctionne toujours.\\
 
 \begin{figure}[!ht]\centering
 	\begin{changemargin}{-3cm}{-3cm}
@@ -390,7 +161,7 @@ brisée par la permutation de couleurs dans $\overline{\mathcal{C}}_{24}$ (resp.
 	\end{changemargin}
 \end{figure}
 \FloatBarrier
-Les 2 chaînes $\overline{\mathcal{C}}_{24}$ et $\overline{\mathcal{C}}_{53}$ peuvent avoir une intersection avec respectivement la  $\overline{\mathcal{C}}_{13}$  et la  $\overline{\mathcal{C}}_{14}$\\
+Les 2 chaînes $\mathcal{C}_{24}$ et $\mathcal{C}_{53}$ peuvent avoir une intersection avec respectivement la  $\overline{\mathcal{C}}_{13}$  et la  $\overline{\mathcal{C}}_{14}$\\
 La figure~\ref{fig:cas4_cond2} (de droite) est identique a la figure~\ref{fig:cas4_cond2_2} mais représenté de manière symétrique\\
 
 \begin{figure}[!h]\centering
@@ -431,9 +202,9 @@ Cela nous donne (Figure~\ref{fig:cas4_cond3_3}) le schéma \textbf{presque} mini
 	\caption{}\label{fig:cas4_cond3_3}
 \end{figure}
 \FloatBarrier
-Presque, parce qu'au moment de l'ajout de l’arête 6-8 pour satisfaire à la 3eme condition de l'exception d'\textsc{Heawood}, on crée un dédoublement de la  $\mathcal{PC}_{34}$. L'une comprend uniquement les sommets 3 et 4, l'autre comprend les sommets 3, 6, 8, 4.
+Presque, parce qu'au moment de l'ajout de l’arête 6-8 pour satisfaire à la 3eme condition de l'exception d'\textsc{Heawood}, on crée un dédoublement de la  $\mathcal{C}_{34}$. L'une comprend uniquement les sommets 3 et 4, l'autre comprend les sommets 3, 6, 8, 4.
 Ce dédoublement n'apporte rien et sans l’arête 3, 4, notre schéma minimal répond toujours à toutes les conditions de l'exception d'\textsc{Heawood}.
-Ce qui nous permet de représenter le schéma minimal des conditionsde l'exception d'\textsc{Heawood} ci-dessous (figure~\ref{fig:cas4_cond3_4})
+Ce qui nous permet de représenter le schéma minimal des conditions de l'exception d'\textsc{Heawood} ci-dessous (figure~\ref{fig:cas4_cond3_4})
 \begin{figure}[!ht]\centering
 	\input{./graphe/cas4_cond3_4}	
 	\caption{}\label{fig:cas4_cond3_4}
@@ -945,9 +716,3 @@ Dès lors, on est sorti du cas 4 puisqu'il n'y a plus de $\overline{\mathcal{C}}
 
 
 \end{description}	
-% *********************************************************
-\section{Conclusion}
-Tous les cas de figure ont été analysés et dans tous les cas, on peut montrer qu'il est possible de sortir du cas 4 par quelques permutations de chaines. Le fait de sortir du cas 4 nous ramène a une structure du graphe qui peut être traitée par une des 3 méthodes de \textsc{Kemps}. 
-La démonstration est dès lors complète !
-
-\end{document}

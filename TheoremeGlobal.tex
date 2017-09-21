@@ -1,0 +1,83 @@
+\documentclass[french]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[a4paper]{geometry}
+\usepackage[francais]{babel}
+\usepackage{amsmath}
+\usepackage{gensymb}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{sidecap}
+\usepackage{xfrac}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage{afterpage}
+\usepackage{soul}
+\usepackage[bottom]{footmisc}
+\usepackage{tikz}
+\usepackage{boxedminipage}
+\usepackage{chngcntr}
+\usepackage{comment}
+\usepackage{placeins} %\FloatBarrier
+\counterwithout{equation}{chapter}
+\counterwithout{figure}{chapter}
+\usepackage{titlesec}
+\usepackage{changepage}% http://ctan.org/pkg/changepage
+ \usepackage{enumitem}
+
+\usetikzlibrary{decorations}
+\usepackage{subcaption}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tikzset{
+bicolor/.style 2 args={
+  thick,dashed,dash pattern=on 6pt off 6pt,-,#1,
+  postaction={draw,dashed,dash pattern=on 4pt off 8pt,-,#2,dash phase=5pt}
+  },
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\titlespacing{\chapter} {0pt} {*0} {*0} {} 
+%\titlespacing{\section} {0ex} {*0} {*0} {} 
+%\titlespacing{\subsection} {0ex} {*0} {*0} {} 
+%\titlespacing{\subsubsection} {10ex} {8ex} {*0} {} 
+
+\begin{document}
+
+	\def \axeline {dotted}
+	\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+	%\newcommand*{\Line}[3][]{\tikz \draw[#1] #2 -- #3;}
+	\let\endchangemargin=\endlist 
+
+\definecolor{b}{RGB}{100,150,200}
+\definecolor{v}{RGB}{120,200,80}
+\definecolor{r}{RGB}{220,80,70}
+\definecolor{j}{RGB}{255,220,50}
+\definecolor{f}{RGB}{180,80,180}
+\definecolor{w}{RGB}{255,255,255}
+\definecolor{n}{RGB}{0,0,0}
+
+\input{./title.tex}
+
+\newpage
+\pagenumbering{gobble}
+
+\tableofcontents
+
+ 
+% *********************************************************
+% *********************************************************
+% *********************************************************
+\input{./theoremeIntroduction.tex}
+\input{./theoreme5couleurs.tex}
+\input{./theoreme4couleurs.tex}
+
+% *********************************************************
+% *********************************************************	
+% *********************************************************
+\section{Conclusion}
+Tous les cas de figure ont été analysés et dans tous les cas, on peut montrer qu'il est possible de sortir du cas 4 par quelques permutations de chaines. Le fait de sortir du cas 4 nous ramène a une structure du graphe qui peut être traitée par une des 3 méthodes de \textsc{Kemps}. 
+La démonstration est dès lors complète !
+
+\end{document}

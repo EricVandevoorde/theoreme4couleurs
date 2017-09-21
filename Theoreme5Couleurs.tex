@@ -1,0 +1,104 @@
+\chapter{Théorème des cinq couleurs}
+
+Le nombre minimal de couleurs différentes nécessaires pour la coloration d'un graphe est appelé son \textit{nombre chromatique}. Il est relativement aisé de montrer que le nombre chromatique de tout graphe géographique est au plus cinq. Ce résultat est le \textit{théorème des cinq couleurs} : cinq couleurs suffisent toujours pour colorer n'importe quelle carte simple planaire connexe. Nous allons redonner ici une démonstration de ce théorème et nous nous baserons sur ce résultat dans la suite pour montrer que quatre couleurs sont en fait déjà suffisantes.
+
+\section{Formule d'Euler}
+
+Comme échauffement, nous allons commencer par redémontrer que tout graphe associé à une carte géographique satisfait à la \textit{formule de \textsc{Euler}} $$S+F-A=2$$ où $S$ représente le nombre total de sommets du graphe, $F$ le nombre total de faces de celui-ci et~$A$ son nombre total d'arêtes (où on a évidemment $S, F, A \in\mathbb{N}^+$).\smallskip
+
+\begin{figure}[b!]\centering{
+\begin{tikzpicture}
+\node[draw, circle,fill=j] (1) at (0,0) {1};
+\node (0) at (0,-0.65) { };
+\end{tikzpicture}
+\qquad\qquad
+\begin{tikzpicture}
+\node[draw, circle,fill=v] (1) at (-0.5,0) {1};
+\node[draw, circle,fill=b] (2) at (0.5,0) {2};
+\node (0) at (0,-0.65) { };
+\path (1) edge (2);
+\end{tikzpicture}
+\qquad\qquad
+\begin{tikzpicture}
+\node[draw, circle,fill=r] (2) at (-0.5,0) {2};
+\node[draw, circle,fill=v] (1) at (0.5,0.65) {1};
+\node[draw, circle,fill=j] (3) at (0.5,-0.65) {3};
+\path (1) edge (2); \path (2) edge (3);
+\end{tikzpicture}
+\qquad\qquad
+\begin{tikzpicture}
+\node[draw, circle,fill=b] (2) at (-0.5,0) {2};
+\node[draw, circle,fill=r] (1) at (0.5,0.65) {1};
+\node[draw, circle,fill=v] (3) at (0.5,-0.65) {3};
+\path (1) edge (2); \path (2) edge (3); \path (3) edge (1);
+\end{tikzpicture}
+\caption{Cas $S=\{1,2,3\}$.}\label{fig:Euler}}
+\end{figure}
+%\FloatBarrier
+
+La démonstration se fait très simplement par récurrence. Pour l'étape de base (\textit{initiation}), voir les graphes de la Figure~\ref{fig:Euler} ci-dessous, on comprend tout de suite que si un graphe (simple) ne possède qu'un seul et unique sommet~($S=1$), il ne peut posséder aucune arête~($A=0$), mais il est entouré par une face extérieure~($F=1$). On a dès lors $1+1-0=2$, qui satisfait bien la formule. Lorsqu'il y a deux sommets ($S=2$), puisque le graphe géographique doit être connexe il y a nécessairement une arête ($A=1$), mais toujours que la seule face extérieure ($F=1$). Alors $2+1-1=2$ est bien vérifié. De même, lorsqu'on a trois sommets, soit on n'a que deux arêtes et une face ($3+1-2=2$), soit on a trois arêtes et deux faces ($3+2-3=2$) : dans les deux cas la formule est respectée. On suppose ensuite (\textit{hérédité}) que tout graphe géographique de~$s$ sommets satisfait à la formule d'\textsc{Euler}, pour $s>3\in\mathbb{N}^+$.
+
+Soit un graphe de $s+1$ sommets. On note $S=s+1$, $F$ et $A$ ses nombres de sommets, faces et arêtes. Si l'on supprime arbitrairement un sommet de degré $d$ quelconque, on supprime par conséquence $d$ arêtes. Dès lors, les $d$ faces délimités par ces arêtes n'en forment plus qu'une : on supprime~$d-1$ faces. Pour ce nouveau graphe on a alors $S'=s=S-1$, $F'=F-(d-1)$ et~$A'=A-d$. On sait par l'hypothèse de récurrence que ce graphe réduit satisfait à la formule d'\textsc{Euler} : $S'+F'-A'=2$. En injectant les expressions de $S'$, $F'$ et $A'$ en fonction de $S$, $F$ et $A$ on trouve alors $$(S-1)+\big(F-(d-1)\big)-(A-d)=S+F-A=2$$ ce qui achève la démonstration.\bigskip
+
+Remarquons également que, puisque (à l'exception de la face extérieure) toute face est toujours bordée par au moins trois arêtes (puisqu'il n'y a ni boucle ni lien double) et que chaque arête délimite au plus deux faces, on a $$2A\geqslant 3F$$
+%
+% Commentaire Npoé
+%Je n'aime pas ce paragraphe
+%
+%\begin{center}\textcolor{red}{\textbf{Je n'aime pas ce paragraphe, la "démonstration" n'est pas assez intuitive …\\}}\end{center}
+En injectant la formule d'\textsc{Euler} récrite sous la forme $F=2+A-S$, ce résultat nous permet d'éliminer le nombre de faces : $2A\geqslant 3(2+A-S)$. En simplifiant, cela nous donne la majoration suivante $$A\leqslant 3S-6$$ toujours valide pour les graphes géographiques.\\
+
+\section{Existence d'un sommet de degré au plus cinq}\label{Existence}
+
+Nous montrons ensuite que tout graphe géographique possède au moins un sommet possédant moins de six voisins, c'est-à-dire dont le degré est au plus cinq. La démonstration se fait par l'absurde : nous supposons que tous les sommets du graphe sont au moins de degré égal à six et nous allons en déduire une contradiction avec nos hypothèses sur le graphe, en particulier que la formule d'\textsc{Euler} n'est plus obéie.
+
+%Notons $F_k\in\mathbb{N}^+$ ($k\in\mathbb{N}^+$) les nombres de $k$-faces (pour lesquels il ne faut pas oublié de prendre en compte la face extérieur), c'est-à-dire de faces bordées par un chemin fermé de $k$ arêtes (\textit{e.g.}~un triangle est une 3-face, un quadrilatère une 4-face, etc.). À l'exception de la face extérieure, toute face est toujours bordée par au mois trois arêtes (puisqu'il n'y a ni boucle ni arête double). Alors, soit les arêtes ne forment aucun chemin fermé (on dit que le graphe est un \textit{arbre}) et il n'y a que la face extérieure (\textit{i.e.}~$F=1$), soit $$F=\sum\limits_{k=3} F_k=F_3+F_4+F_5+...$$\\
+
+Pour se faire, introduisons la notation suivante :
+%On écrit $F_k\in\mathbb{N}^+$ ($k\in\mathbb{N}^+$) les nombres de $k$-faces (pour lesquels il ne faut pas oublié de prendre en compte la face extérieur), c'est-à-dire de faces bordées par un chemin fermé de $k$ arêtes (\textit{e.g.}~un triangle est une 3-face, un quadrilatère une 4-face, etc.). Puisqu'il n'y a ni boucle ni arête double, toute face est toujours bordée par au mois trois arêtes (à l'exception peut-être de la face extérieure dans le cas général où le degré des sommets peut être plus petit que cinq). Par l'hypothèse de notre démonstration, tout sommet est au moins de degré six et $F\geqslant 2$\footnote{Dans le cas général où le degré des sommets peut être plus petit que cinq, les arêtes peuvent ne former aucun chemin fermé (on dit que le graphe est un \textit{arbre}) et il n'y a que la face extérieure. Alors $F=1$. Lorsque le graphe n'est pas un arbre, on a toujours la formule $F=\sum F_k$ pour $k\geqslant 3$.}, alors $$F=\sum\limits_{k=3} F_k=F_3+F_4+F_5+...$$
+on écrit $S_d\in\mathbb{N}^+$ le sombre de sommets de degré $d$. Comme par hypothèse chaque sommet est au moins de degré six, on a $$S=\sum\limits_{d=6}S_d=S_6+S_7+S_8+...$$ À partir de chaque sommet de degré $d$, il part $d$ arrêtes. Alors $\frac{1}{2}\sum dS_d$ donne le nombre total d'arêtes (où on doit diviser par deux car chaque arrête contribue au degré de deux sommets\footnote{Ceci n'est vrai que par notre hypothèse sur le degré minimal. Dans le cas où il peut exister un sommet de degré un, l'arête issue de ce sommet ne délimite aucune face (\textit{c.f.} Monaco ou Saint-Marin dans le graphe de la Figure~\ref{Carte}, page~\pageref{Carte}).}), c'est-à-dire $$A=\dfrac{1}{2}\sum\limits_{d=6}dS_d=\dfrac{1}{2}\Big\lbrace 6S_6+7S_7+8S_8+...\Big\rbrace$$
+%De même, chaque $k$-face est délimitée par $k$ arêtes et, puisque chaque arête délimite deux faces, on a aussi $$A=\frac{1}{2}\sum\limits_{k=3}kF_k=\frac{1}{2}\Big\lbrace 3F_3+4F_4+5F_5+...\Big\rbrace$$
+%À partir de cette dernière expression et la définitions de $F$ en fonction des $F_k$, on obtient $$2A-3F=\sum\limits_{k=3}(k-3)F_k=F_4+2F_5+3F_6+...\geqslant 0$$ d'où on tire $$2A\geqslant 3F$$ En injectant la formule d'Euler récrite sous la forme $F=2+A-S$, cela nous permet d'éliminer le nombre de faces $2A\geqslant 3(2+A-S)$. En simplifiant, cela nous donne la majoration suivante\footnote{Cette expression est toujours vraie pour les graphes géographiques puisque nous n'avons pas utilisé d'hypothèse sur l'ordre des sommets pour la déduire.}
+%\begin{equation}
+%A\leqslant 2S-6
+%\end{equation}
+On peut alors écrire $$2A-6S=\sum\limits_{d=6}(d-6)S_d=S_7+2S_8+3S_9+...\geqslant 0$$ d'où l'on tire $$A\geqslant 3S$$ En se souvenant qu'on a toujours $2A\geqslant 3F$ et en additionnant cette inégalité à celle que l'on vient de déduire, on trouve $$A\geqslant S+F\quad\qquad\Rightarrow\quad\qquad S+F-A\leqslant 0$$ or la formule d'Euler nous dit qu'on a l'égalité stricte et positive $S+F-A=2$ pour les graphes considérés. On a donc une contradiction dans nos hypothèses : un graphe géographique ne peut pas être composé de sommets étant tous de degré strictement plus grand que cinq. On en conclut l'existence d'au moins un sommet de degré au plus cinq, ce qui achève la démonstration.\\
+
+\section{Théorème des cinq couleurs}
+
+Venons-en à la démonstration du théorème des cinq couleurs. Les deux résultats précédents, à savoir l'applicabilité de la formule d'\textsc{Euler} à tout graphe géographique et l'existence d'au moins un sommet de degré au plus cinq dans un tel graphe, nous permettent de faire la récurrence suivante sur le nombre de sommets.
+
+Si $S\leqslant 5$, il est évident que cinq couleurs suffisent pour colorer le graphe : on en utilise une par sommet. Si $S=6$, on pourrait imaginer que tout sommet du graphe soit lié à chacun des autres sommets par une arête, mais alors le graphe n'est pas planaire\footnote{Un graphe dont tout sommet est adjacent à tous les autres, c'est-à-dire tel que chaque paire de sommet est reliée par une arête, est appelé un graphe \textit{complet}. On peut montrer que le graphe complet composé de cinq sommets, dénoté $K_5$ est le plus petit graphe \textit{non planaire}. Tous les graphes complets composés de plus de cinq sommets sont également non planaires.}. Pour que le graphe soit planaire lorsque $S=6$, il doit exister au moins deux sommets qui ne soient pas liés par une arête et ce deux-là peuvent avoir la même couleur. Les quatre autres sommets ne demandent que quatre couleurs supplémentaires, soit au total cinq couleurs nécessaires pour colorer le graphe. Ceci constitue l'étape de base de la démonstration (\textit{initiation}). On suppose ensuite (\textit{hérédité}) que tout graphe géographique de~$s>6\in\mathbb{N}^+$ sommets est 5-coloriable (\textit{i.e.} que cinq couleurs suffisent pour le colorer).
+
+On se donne alors un graphe de $s+1$ sommets, dont on sélectionne de manière arbitraire un sommet de degré au plus cinq (dont on sait par la section précédente qu'il en existe au moins un). En supprimant ce sommet, le graphe est 5-coloriable par hypothèse de récurrence. Alors si ce sommet a moins de cinq voisins ou si (au moins) deux voisins de ce sommet ont la même couleur, il reste au moins une couleur disponible pour le colorer. En revanche, si ce sommet a exactement cinq voisins et qu'ils ont tous des couleurs différentes on distingue différents cas. Appelons «~0~» le sommet en question et numérotons (de manière arbitraire) de 1 à 5 les cinq sommets qui lui sont connectés (voir Figure~\ref{fig:5_pentagone_5col}).
+
+%\begin{SCfigure}[][h!]
+%	\input{./graphe/5_sommet_herison}
+%	\caption{Sommet 0 entouré de 5 sommets de 5 couleurs différentes.}
+%	\label{fig:herison}
+%\end{SCfigure}
+
+On supposera, de plus, que ces sommets forment un chemin fermé autour de 0, connectés par des arrêtes 1-2, 2-3, 3-4, 4-5 et 5-1 (voir Figure~\ref{fig:5_pentagone_5col}). Cette hypothèse, plus contraignante que celles habituellement supposées pour la démonstration du théorème des cinq couleurs, simplifiera nos réflexions dans la démonstration du théorème des quatre couleurs. Cette hypothèse est effectivement plus contraignante puisqu'elle empêche deux sommets qui, sans la présence de ces arêtes seraient adjacents mais non voisins, d'être coloriés de la même couleur. La suppression de ces arrêtes donne un graphe dont la coloration est toujours valide, alors que l'inverse n'est pas vrai : ajouter ces arrêtes à un graphe colorés ne préserve pas toujours la 5-coloration de celui-ci. Enfin, le sommet 0 étant par hypothèse de degré cinq, il ne peut exister d'autres arêtes qui lui sont connectées et la présence de ce chemin fermé ne réduit pas la généralité de la démonstration : l'hypothèse est alors acceptable.
+
+%Bien que cela ne soie pas repris dans l’explication de \textsc{Kempe}, il nous semble nécessaire de préciser que si on peut démontré que le graphe comportant ces arrêtes est 4-coloriable, alors tous les graphes dont on supprimerais une où plusieurs arrêtes sont également 4-coloriable. La suppression d’une arrête ne modifie pas les couleurs des sommets et ne risque pas de mettre en relation 2 sommets de même couleur. Ces arrete complementaire n'empeche pas non plus d'autre posibilité de liaiasons avec le sommet « 0 » puisque par definition il est de niveau 5 et a donc deja le nombre maximun d'arrêtes. \\
+%Soucieux de produire une solution généraliste applicable dans tous les cas, nous considérerons le graphes le plus contraignant, a savoir un graphe qui comporte ces arrêtes (voir Figure~\ref{fig:5_pentagone_5col}) \\
+
+\begin{SCfigure}[][t!]
+	\input{./graphe/5_pentagone_5col}
+	\caption{Sommet~0 de degré~5\\\footnotesize\textit{Les sommets 1 à 5 sont de couleurs différentes et forment un chemin fermé autour de 0.}\\\footnotesize{Remarque · \textit{Les arêtes incomplètes partant des sommets 1 à 5 illustrent le fait que le graphe peut contenir d'autres sommets et arêtes, non illustrés sur cette figure. Leur nombre est arbitraire.}}}
+	\label{fig:5_pentagone_5col}
+\end{SCfigure}
+
+Dans le premier cas, on regarde s'il existe une chaine de \textsc{Kempe} complète $\overline{\mathcal{C}}_{13}$ reliant les sommets~1 et~3 (ou de manière équivalente 2 et 4, 3 et 5, 4 et 1 ou 5 et 2), %c'est-à-dire telle que l'on ait l'égalité~$\mathcal{C}_{13}=\mathcal{C}_{31}$ (
+voir Figure~\ref{fig:5_pentagone_5col2}. %Cette chaine forme alors une succession de sommets de couleurs alternées formant un chemin bicolore entre les sommets 1 et 3.
+Si cette chaine complète n'existe pas, le sommet 3 ne fait pas partie de $\mathcal{C}_{13}$ : on a alors~$\mathcal{C}_{13}\cap\mathcal{C}_{31}=\varnothing$ et on peut permuter les couleurs dans la chaine $\mathcal{C}_{31}$ sans que cela ne modifie le sommet~1, c'est-à-dire de façon à ce qu'au final 1 et 3 soient de la même couleur et que la seconde couleur de la chaine soit disponible pour le sommet 0. Le graphe est alors 5-coloriable.
+
+Si une chaine complète $\overline{\mathcal{C}}_{13}$ existe, on doit passer au second cas. L'existence de cette chaine implique que le sommet 4 (resp. 5) ne peut pas faire partie de la chaine $\mathcal{C}_{24}$ (resp.~$\mathcal{C}_{25}$). En effet, si une chaine~$\mathcal{C}_{24}$ contenait 2 et 4, elle devrait avoir un sommet commun avec la chaine~$\mathcal{C}_{13}$ à l'endroit où les deux chaines se croisent. Or, puisque les cinq sommets autour de~0 sont de couleurs différentes, les chaines $\mathcal{C}_{13}$ et $\mathcal{C}_{24}$ n'ont pas de couleur commune et ne peuvent pas se croiser ! On est dès lors libre de permuter les couleurs dans $\mathcal{C}_{24}$ ou $\mathcal{C}_{42}$ de façon à ce que~2 et~4 soient de la même couleur et qu'une couleur soit libérée pour colorer le sommet~0. Le raisonnement est identique pour la chaine $\mathcal{C}_{25}$.
+
+Le cas du graphe à $s+1$ sommets étant traité, ceci achève la preuve du théorème des cinq couleurs.
+
+\begin{SCfigure}[][h!]
+	\input{./graphe/5_pentagone_5col2}
+	\caption{Existence d'une chaine~$\overline{\mathcal{C}}_{13}$\\\footnotesize\textit{Si~$\overline{\mathcal{C}}_{13}$ existe, on permute les couleurs dans $\mathcal{C}_{24}$ (ou $\mathcal{C}_{42}$). Si elle n'existe pas, on permute les couleurs dans $\mathcal{C}_{13}$ (ou $\mathcal{C}_{31}$).}\\\footnotesize{Remarque · \textit{Le test peut être fait sur n'importe laquelle des paires de sommets 1-3, 2-4, 4-1 ou 5-2. }}}
+	\label{fig:5_pentagone_5col2}
+\end{SCfigure}
